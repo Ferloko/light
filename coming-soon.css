@@ -6,7 +6,8 @@
   background: var(--c12);
   color: var(--a3);
   font-family: var(--font-ui);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .coming-soon {
@@ -142,11 +143,143 @@
 }
 
 .coming-soon-note {
-  margin: 0;
+  margin: 0 0 var(--spacing-32);
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--c5);
+}
+
+.interest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-12);
+}
+
+.interest-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  margin: 0;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid #ffffff55;
+  background: #ffffff12;
+  color: var(--a3);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    background 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.interest-btn:hover {
+  background: #ffffff22;
+  border-color: #ffffffaa;
+}
+
+.interest-btn:active {
+  transform: scale(0.98);
+}
+
+.interest-btn.is-liked {
+  background: var(--a3);
+  border-color: var(--a3);
+  color: var(--a1);
+  cursor: default;
+}
+
+.interest-btn.is-liked:hover {
+  background: var(--a3);
+  border-color: var(--a3);
+}
+
+.interest-label {
+  line-height: 1;
+}
+
+.interest-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  padding: 0.2rem 0.45rem;
+  border-left: 1px solid currentColor;
+  padding-left: var(--spacing-16);
+  font-family: var(--font-didot);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  opacity: 0.9;
+  transition: transform 0.35s var(--ease);
+}
+
+.interest-count.is-bump {
+  animation: interest-bump 0.45s var(--ease);
+}
+
+@keyframes interest-bump {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.22);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.interest-hint {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c5);
+}
+
+.interest-live {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--c5);
+  flex-shrink: 0;
+}
+
+.interest-hint.is-online .interest-live {
+  background: #6fcf97;
+  box-shadow: 0 0 0 0 #6fcf9780;
+  animation: interest-pulse 1.8s var(--ease) infinite;
+}
+
+@keyframes interest-pulse {
+  0% {
+    box-shadow: 0 0 0 0 #6fcf9780;
+  }
+  70% {
+    box-shadow: 0 0 0 0.45rem #6fcf9700;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #6fcf9700;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interest-count.is-bump,
+  .interest-hint.is-online .interest-live {
+    animation: none !important;
+  }
 }
 
 @media (max-width: 520px) {

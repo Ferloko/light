@@ -45,3 +45,145 @@
   tick();
   setInterval(tick, 1000);
 })();
+
+(() => {
+  const btn = document.getElementById("interest-btn");
+  const countEl = document.getElementById("interest-count");
+  const hint = document.getElementById("interest-hint");
+  const hintText = document.getElementById("interest-hint-text");
+  if (!btn || !countEl) return;
+
+  const STORAGE_KEY = "light-interest-liked";
+  const TOPIC = "light-magazine-me-interesa-x7k2q";
+  const METRIC = "likes";
+  const base = `https://tally.legible.sh/${TOPIC}/${METRIC}`;
+  const sseUrl = `https://tally.legible.sh/${TOPIC}/sse`;
+
+  let known = null;
+
+  const formatCount = (n) => {
+    const value = Number(n);
+    if (!Number.isFinite(value) || value < 0) return "—";
+    return new Intl.NumberFormat("es").format(Math.floor(value));
+  };
+
+  const setOnline = (online) => {
+    if (!hint) return;
+    hint.classList.toggle("is-online", online);
+  };
+
+  const setHint = (text) => {
+    if (hintText) hintText.textContent = text;
+  };
+
+  const setLiked = (liked) => {
+    btn.classList.toggle("is-liked", liked);
+    btn.setAttribute("aria-pressed", liked ? "true" : "false");
+    btn.disabled = liked;
+    const label = btn.querySelector(".interest-label");
+    if (label) label.textContent = liked ? "¡Gracias!" : "Me interesa!";
+    setHint(
+      liked ? "En vivo · tu interés quedó registrado" : "En vivo · sé de los primeros"
+    );
+  };
+
+  const paintCount = (n, { animate } = {}) => {
+    const next = Number(n);
+    if (!Number.isFinite(next) || next < 0) return;
+    const prev = known;
+    known = next;
+    countEl.textContent = formatCount(next);
+    if (animate && prev !== null && next !== prev) {
+      countEl.classList.remove("is-bump");
+      void countEl.offsetWidth;
+      countEl.classList.add("is-bump");
+    }
+  };
+
+  const readCount = async () => {
+    try {
+      const res = await fetch(base, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      if (!res.ok) throw new Error("counter fetch failed");
+      const data = await res.json();
+      paintCount(data.value ?? 0);
+      return true;
+    } catch {
+      if (known === null) countEl.textContent = "—";
+      return false;
+    }
+  };
+
+  const bumpCount = async () => {
+    try {
+      const res = await fetch(base, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "text/plain",
+        },
+        body: "+1",
+        cache: "no-store",
+      });
+      if (!res.ok) throw new Error("counter bump failed");
+      const data = await res.json();
+      paintCount(data.value ?? 0, { animate: true });
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const listenLive = () => {
+    if (!("EventSource" in window)) {
+      setOnline(false);
+      setInterval(readCount, 2000);
+      return;
+    }
+
+    const source = new EventSource(sseUrl);
+
+    source.addEventListener("open", () => {
+      setOnline(true);
+    });
+
+    source.addEventListener("update", (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.metric && data.metric !== METRIC) return;
+        paintCount(data.value ?? 0, { animate: true });
+        setOnline(true);
+      } catch {
+        /* ignore malformed frames */
+      }
+    });
+
+    source.onerror = () => {
+      setOnline(false);
+    };
+  };
+
+  const alreadyLiked = localStorage.getItem(STORAGE_KEY) === "1";
+  setLiked(alreadyLiked);
+  readCount().then((ok) => {
+    if (ok) setOnline(true);
+  });
+  listenLive();
+
+  btn.addEventListener("click", async () => {
+    if (localStorage.getItem(STORAGE_KEY) === "1") return;
+
+    btn.disabled = true;
+    const ok = await bumpCount();
+    if (!ok) {
+      btn.disabled = false;
+      setHint("Inténtalo de nuevo en un momento");
+      return;
+    }
+
+    localStorage.setItem(STORAGE_KEY, "1");
+    setLiked(true);
+  });
+})();
