@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIGHT — Coming Soon</title>
+  <meta name="description" content="LIGHT se revela el 7 de octubre de 2026." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,300;6..96,400;6..96,600&family=Josefin+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="coming-soon.css" />
+  <script src="gate.js"></script>
+</head>
+<body class="coming-soon-body">
+  <div class="coming-soon">
+    <div class="coming-soon-bg" aria-hidden="true">
+      <img src="images/photo-24.png" alt="" />
+    </div>
+    <div class="coming-soon-veil" aria-hidden="true"></div>
 
+    <main class="coming-soon-inner">
+      <p class="coming-soon-eyebrow">Estamos casi listos</p>
+      <h1 class="coming-soon-logo">
+        <img src="images/logo-blanco.png" alt="LIGHT Magazine" />
+      </h1>
+      <p class="coming-soon-lead">
+        La mirada editorial se revela el<br />
+        <strong>7 de octubre de 2026 · 00:00</strong>
+      </p>
+
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="countdown-unit">
+          <span class="countdown-value" data-unit="days">00</span>
+          <span class="countdown-label">Días</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" data-unit="hours">00</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" data-unit="minutes">00</span>
+          <span class="countdown-label">Min</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" data-unit="seconds">00</span>
+          <span class="countdown-label">Seg</span>
+        </div>
+      </div>
+
+      <p class="coming-soon-note" id="countdown-note">ATT: Snow &amp; Songbird</p>
+    </main>
+  </div>
+
+  <script src="coming-soon.js"></script>
+</body>
+</html>
