@@ -26,7 +26,7 @@
       minutesEl.textContent = "00";
       secondsEl.textContent = "00";
       if (note) note.textContent = "Abriendo LIGHT…";
-      window.location.replace("index.html");
+      window.location.replace("/");
       return;
     }
 

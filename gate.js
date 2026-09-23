@@ -9,9 +9,9 @@
   const UNLOCK_ISO = "2026-10-07T00:00:00-04:00";
   const unlockAt = new Date(UNLOCK_ISO).getTime();
   const params = new URLSearchParams(window.location.search);
-  const path = window.location.pathname.split("/").pop() || "index.html";
-  const isComingSoon =
-    path === "coming-soon.html" || path === "coming-soon";
+  const raw = window.location.pathname.replace(/\/+$/, "");
+  const path = raw.split("/").pop() || "";
+  const isComingSoon = path === "coming-soon" || path === "coming-soon.html";
 
   if (params.has("preview")) {
     try {
@@ -45,12 +45,12 @@
 
   // After unlock: leave coming-soon → home
   if (unlocked && !params.has("force-gate") && isComingSoon) {
-    window.location.replace("index.html");
+    window.location.replace("/");
     return;
   }
 
   // Before unlock: hide real site → coming-soon
   if (!unlocked && !preview && !isComingSoon) {
-    window.location.replace("coming-soon.html");
+    window.location.replace("/coming-soon");
   }
 })();
