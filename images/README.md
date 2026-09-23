@@ -1,0 +1,1 @@
+# LIGHT photos\n\nYour images are mapped as `photo-01.png` … `photo-24.png`.\nReplace files in place to update the site.\n

@@ -1,0 +1,132 @@
+/* LIGHT design tokens — mapped from Vogue.com system */
+
+:root {
+  /* Primitives */
+  --a1: #000;
+  --a2: #f8f8f8;
+  --a3: #fff;
+  --b1: #1f1f1f;
+  --b2: #d92f20;
+  --b3: #fcefee;
+  --b4: #f98076;
+  --c1: #000;
+  --c2: #1f1f1f;
+  --c3: #636363;
+  --c4: #727272;
+  --c5: #a8a8a8;
+  --c6: #cbcbcb;
+  --c7: #e0e0e0;
+  --c8: #f8f8f8;
+  --c9: #1f1f1f80;
+  --c10: #f0f0f0;
+  --c11: #fcfcfc;
+  --c12: #121212;
+  --c13: #747474;
+  --c14: #1f201f;
+  --c15: #1a1a1a;
+  --c16: #f7f7f7;
+  --c17: #fbfbfb;
+  --c18: #404040;
+  --success1: #008768;
+  --error1: #b8293d;
+  --notice1: #f7c442;
+  --notice2: #fff2d0;
+  --focus1: #0076d7;
+  --transparent-0: #0000;
+  --transparent-25: #00000040;
+  --transparent-30: #0000004d;
+  --transparent-50: #00000080;
+  --transparent-70: #000000b3;
+
+  /* Semantic color */
+  --color-surface: var(--a3);
+  --color-surface-subtle: var(--c8);
+  --color-surface-hover: var(--c17);
+  --color-surface-pressed: var(--c10);
+  --color-surface-navigation: var(--a3);
+  --color-surface-placeholder: var(--c8);
+  --color-action-brand-default: var(--c1);
+  --color-action-brand-hover: var(--c14);
+  --color-action-brand-pressed: var(--c15);
+  --color-action-brand-inverse: var(--a3);
+  --color-text: var(--c1);
+  --color-text-subtle: var(--c2);
+  --color-text-disabled: var(--c13);
+  --color-text-link: var(--c2);
+  --color-text-heading: var(--c1);
+  --color-text-subheading: var(--c1);
+  --color-text-placeholder: var(--c6);
+  --color-icon: var(--c1);
+  --color-icon-subtle: var(--c5);
+  --color-border: var(--c2);
+  --color-border-subtle: var(--c7);
+  --color-border-hover: var(--c2);
+  --color-border-active: var(--c1);
+  --color-border-focus: var(--focus1);
+  --color-divider: var(--c7);
+  --color-logo: var(--c1);
+
+  /* Spacing */
+  --spacing-0: 0px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+  --spacing-badge: 4px 8px;
+  --spacing-nav-link: 12px 8px 10px;
+  --spacing-link-button: 16px 20px;
+  --spacing-link-button-compact: 5px 8px;
+  --spacing-buy-button: 6px var(--spacing-16);
+  --spacing-icon-button: var(--spacing-12);
+  --spacing-section-small: var(--spacing-32) var(--spacing-0);
+  --spacing-section-medium: var(--spacing-56) var(--spacing-0);
+
+  /* Font stacks — free stand-ins for VogueAvantGarde / FBDidotS / AdobeGaramondPro */
+  --font-ui: "Josefin Sans", "Helvetica Neue", Helvetica, sans-serif;
+  --font-didot: "Bodoni Moda", "Didot", "Bodoni MT", serif;
+  --font-garamond: "EB Garamond", "Adobe Garamond Pro", Garamond, serif;
+
+  /* Typography tokens (size / line-height) */
+  --size-nav-primary: 13px;
+  --lh-nav-primary: 1.136;
+  --tracking-nav-primary: 0.128em;
+  --size-utility-button: 13px;
+  --lh-utility-button: 1.136;
+  --tracking-utility-button: 0.085em;
+  --size-context-primary: 13px;
+  --lh-context-primary: 1.231;
+  --tracking-context-primary: 0.138em;
+  --size-accreditation: 12px;
+  --lh-accreditation: 1.363;
+  --tracking-accreditation: 0.164em;
+  --size-discovery-hed-feature: 24px;
+  --lh-discovery-hed-feature: 1.25;
+  --size-discovery-hed-core: 16px;
+  --lh-discovery-hed-core: 1.4;
+  --tracking-discovery-hed-core: -0.0125em;
+  --size-discovery-page-hed: 32px;
+  --lh-discovery-page-hed: 1.125;
+  --tracking-discovery-page-hed: 0.044em;
+  --size-hed-feature: 38px;
+  --lh-hed-feature: 1.105;
+  --tracking-hed-feature: 0.037em;
+  --size-utility-meta: 13px;
+  --lh-utility-meta: 1.4;
+  --size-foundation-meta: 12px;
+
+  /* Gradients */
+  --gradient-strong-180deg: linear-gradient(180deg, var(--transparent-0) 0%, var(--transparent-70) 60%);
+  --gradient-subtle-180deg: linear-gradient(180deg, var(--transparent-0) 0%, var(--transparent-25) 60%);
+
+  /* Layout */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --page: min(1200px, calc(100% - 2.5rem));
+}
